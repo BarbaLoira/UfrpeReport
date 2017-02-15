@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="appReport">
+<title>UFRPE - Reports</title>
+<meta charset="UTF-8">
+
+<head>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <script type="text/javascript" src="js/angular-base64-upload.js"></script>
+</head>
+
+<body ng-controller="indexController">
+    <div class="container">
+
+        <form name="form">
+
+            <div class="input-group">
+
+                <input class="form-control" type="file" ng-model="file" name="inputFile" base-sixty-four-input required maxsize="500" accept="image/*">
+            </div>
+
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>filename</th>
+                    <th>filetype</th>
+                    <th>filesize (<i><small>KB</small></i>)</th>
+                    <th>base64</th>
+                </tr>
+                <tr ng-show="file">
+                    <td>{{file.filename}}</td>
+                    <td>{{file.filetype}}</td>
+                    <td>{{file.filesize / 1000}}</td>
+                    <td>{{file.base64.substring(0, 30)}}...</td>
+                </tr>
+                <tr>
+                    <td colspan="4" ng-show="!file">
+                        <small><i>No file selected.</i></small>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+        </form>
+    </div>
+    <br>
+    <input type="text" ng-model="report.cpf" />
+<br>
+<input type="text" ng-model="report.email" />
+<br>
+<input type="text" ng-model="report.description" />
+<br>
+<input type="text" ng-model="report.place" />
+<br>
+<br>
+    <input type="button" ng-click="saveReport()"></input>
+<br>
+<div ng-repeat="img in reports">
+<img src="data:image/jpg;base64,{{img.base64}}">
+<div>
+<input type="button" ng-click="getReports()"></input>
+</body>
+
+</html>
