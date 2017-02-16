@@ -1,32 +1,25 @@
 //Criacao do modulo principal da aplicacao
-var appCliente = angular.module("appCliente", [ 'ngRoute' ]);
+var appCliente = angular.module("appCliente", [ 'ngRoute', 'naif.base64' ]);
 
 appCliente.config(function($routeProvider, $locationProvider) {
 
-	$routeProvider
-	.when("/clientes", {
-		templateUrl : 'view/cliente.html',
-		controller : 'clienteController'
-	}).when("/clientes/:clienteId", {
-		templateUrl : 'view/cliente-detalhe.html',
-		controller : 'clienteDetalheController'
-	}).when("/cidades", {
-		templateUrl : 'view/cidade.html',
-		controller : 'cidadeController'
-	}).when("/estados", {
-		templateUrl : 'view/estado.html',
-		controller : 'estadoController'
-	}).when("/login", {
-		templateUrl : 'view/login.html',
-		controller : 'loginController'
+	$routeProvider.when("/home", {
+		templateUrl : 'view/home.html',
+		controller : 'homeController'
+	}).when("/", {
+		templateUrl : 'view/home.html',
+		controller : 'homeController'
+	}).when("/adm", {
+		templateUrl : 'view/adm.html',
+		controller : 'admController'
 	}).otherwise({
-		rediretTo : '/'
+		rediretTo : '/home'
 	});
-	
+
 	$locationProvider.html5Mode(true);
-	
+
 });
 
-appCliente.config (function($httpProvider){
+appCliente.config(function($httpProvider) {
 	$httpProvider.interceptors.push("tokenInterceptor");
 });

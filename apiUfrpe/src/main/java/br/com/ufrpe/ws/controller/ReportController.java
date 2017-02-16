@@ -24,7 +24,7 @@ public class ReportController {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/insertReport")
 	public void insert(@RequestBody Report report) {
-		System.out.println("chamou");
+		
 		this.reportRepository.save(report);
 
 	}

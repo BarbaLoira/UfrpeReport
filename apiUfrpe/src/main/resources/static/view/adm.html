@@ -1,0 +1,81 @@
+
+    <!------------------------------------------------------------------------------- Apresentation -->
+    <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+<div class="w3-panel">
+
+    <h1><b>UFRPE - Reports</b></h1>
+
+    <p>Bem vindo a aréa administrativa !</p>
+    <p>Aqui você tem o poder de ajudar, deixando os pupilos da Universidade bem mais seguros</p>
+</div>
+<br>
+<br>
+
+
+<div class="w3-center w3-responsive">
+    <!-- ---------------------------------------------------------------------------------------------------------- Table Infomation -->
+    <table class="w3-table-all w3-card-2 w3-hoverable w3-hover-border-blue">
+        <tr class="w3-blue">
+            <th style="min-width:14px">Cpf</th>
+<th style="min-width:45px">Email</th>
+<th style="min-width:30px">Lugar</th>
+<th>Descricao</th>
+<th>Imagem</th>
+<th>Visualizar</th>
+</tr>
+<tr ng-repeat="r in reports">
+    <th>{{r.cpf}}</th>
+    <th>{{r.email}}</th>
+    <th>{{r.place}}</th>
+    <th class="descrpt" style="min-width: 13px">{{r.description}}</th>
+<th>
+    <img style="max-width:80%;" style="max-height:80%" src="data:image/jpg;base64,{{r.base64}}"></th>
+<th>
+    <a ng-click="showRow(r.description,r.base64)" class="w3-btn-block w3-light-grey">Login adm</a>
+</th>
+
+</tr>
+</table>
+<br>
+
+<hr>
+
+<!-- ---------------------------------------------------------------------------------------------------------- Contact -->
+<div class="w3-center w3-padding-64" id="contact">
+    <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Aconteceu algum problema no site?!</span>
+    <br><br>
+    <br>
+    <label>Envie um email para: marcoseduflautista1@gmail.com</label>
+</div>
+</div>
+</div>
+
+
+
+<!-- ------------------------------------------------------------------------------------- login adm Grid -->
+<div class="w3-row-padding">
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+<div class="w3-center w3-padding-8"><br>
+    <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Close Modal">×</span>
+
+</div>
+
+
+<div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+
+    <img style="max-width:100%;" style="max-height:100%" src="data:image/jpg;base64,{{auxImg}}"/>
+<br>
+<br>
+<div class="w3-panel w3-border w3-hover-border-blue w3-border-grey">
+    <label>{{description}}</label>
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+</div>

@@ -1,56 +1,4 @@
-<!DOCTYPE html>
-<html ng-app="appReport">
-<head>
 
-<base href="/" />
-<meta charset="UTF-8"  ></meta>
-<meta name="viewport" content="width=device-width, initial-scale=1" ></meta>
-<title>UFRPE - Reports</title>
-
-<link rel="stylesheet" href="css/index.css"/>
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"/>
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Lato"/>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
-
-<script src="./js/app.js"></script>
-<script src="./js/controller/main-controller.js"></script>
-
-<script src="./js/controller/adm-controller.js"></script>
-<script src="./js/controller/home-controller.js"></script>
-
-<!-- <script src="./js/interceptor/token-interceptor.js"></script> -->
-
-</head>
-<body ng-controller="mainController">
-	<!-- Links (sit on top) -->
-	<div class="w3-top">
-		<div class="w3-row w3-large">
-			<div class="w3-col s3">
-				<a href="#" class="w3-btn-block w3-light-grey">InÃ­cio</a>
-			</div>
-			<div class="w3-col s3">
-				<a href="#newReport" class="w3-btn-block w3-light-grey">Reportar</a>
-			</div>
-			<div class="w3-col s3">
-				<a onclick="document.getElementById('id01').style.display='block'"
-					class="w3-btn-block w3-light-grey">Login adm</a>
-			</div>
-			<div class="w3-col s3">
-				<a href="#contact" class="w3-btn-block w3-light-grey">Contato</a>
-			</div>
-		</div>
-	</div>
-
-
-	<div ng-view="ng-view">
-	
 
 <!-- ------------------------------------------------------------------------------------------------------- Content -->
 <div class="w3-content"
@@ -186,9 +134,9 @@
 					class="w3-input w3-border w3-round-xxlarge" type="text"
 					maxlength="45" name="email" ng-model="report.email" required>
 				<label class="w3-label  w3-validate">Digite seu email (que
-					vocÃª estÃ¡ habituado a usar)</label> <br> <br> <label
+					você está habituado a usar)</label> <br> <br> <label
 					class="w3-label w3-center w3-validate">Insira a foto do
-					local (seria Ã³timo para averiguar a vericidade do caso)</label> <input
+					local (seria ótimo para averiguar a vericidade do caso)</label> <input
 					type="file" ng-model="file" name="inputFile" base-sixty-four-input
 					required maxsize="500" accept="image/*"> <br> <br>
 				<button class="w3-btn w3-section w3-teal w3-ripple" type="submit"
@@ -217,7 +165,7 @@
 					<br> <span
 						onclick="document.getElementById('id01').style.display='none'"
 						class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
-						title="Close Modal">Ã—</span>
+						title="Close Modal">×</span>
 
 				</div>
 
@@ -238,7 +186,7 @@
 					<span
 						onclick="document.getElementById('id01').style.display='none'"
 						class="w3-left w3-padding w3-hide-small"><a href="#contact">Esqueceu
-							a senha ou ainda nÃ£o foi cadastrado? entre em contato conosco.</a></span>
+							a senha ou ainda não foi cadastrado? entre em contato conosco.</a></span>
 					<button
 						onclick="document.getElementById('id01').style.display='none'"
 						type="button" class="w3-btn w3-red">Cancel</button>
@@ -270,7 +218,4 @@
 				});
 			});
 		});
-	</script></div>
-</body>
-
-</html>
+	</script>

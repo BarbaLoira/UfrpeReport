@@ -1,0 +1,30 @@
+html,body,h1,h2,h3,h4 {
+    font-family:"Lato", sans-serif
+    }
+.mySlides {
+    display:none
+    }
+.w3-tag, .fa {
+    cursor:pointer
+    }
+.w3-tag {
+    height:15px;width:15px;padding:0;margin-top:6px
+    }
+  area { background-color: #222;}
+
+  .descrpt{
+      overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+       max-width: 350px;
+  }
+
+  #backImage{
+        background-repeat: no-repeat;
+     background-image: url("/w3images/backImage.jpg");
+     
+  
+    min-width: 100%;
+    max-height: 100%;
+    
+  }

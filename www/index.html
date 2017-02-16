@@ -1,36 +1,218 @@
 <!DOCTYPE html>
-<html >
-<head>
-<title>UFRPE Reports</title>
-<base href="/"  />
-<meta charset="UTF-8"/>
+<html ng-app="appReport">
+<title>UFRPE - Reports</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+<head>
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <script type="text/javascript" src="js/angular-base64-upload.js"></script>
 </head>
-<body>
 
-  <div class="w3-display-container w3-text-white">
-      <img src="w3images/backImage.jpg" style="width:100%;max-height:780px;">
+<body ng-controller="indexController">
 
-        <table class="table table-bordered table-striped w3-display-middle w3-large">
-                <tr>
-                    <th></th>
-                </tr>
-                <tr >
-                    <td> <input type="button" value="Entrar como Adm" style="width:200px;"  ></input></td>  </tr>
-                   <tr >  <td> <input type="button" value="Entrar como Aluno" style="width:200px;" ></input></td>
-                   
-                </tr>
-           
-            </table>
+    <!-- Links (sit on top) -->
+    <div class="w3-top">
+        <div class="w3-row w3-large">
+            <div class="w3-col s3">
+                <a href="#" class="w3-btn-block w3-light-grey">Início</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#newReport" class="w3-btn-block w3-light-grey">Reportar</a>
+            </div>
+            <div class="w3-col s3">
+                <a onclick="document.getElementById('id01').style.display='block'" class="w3-btn-block w3-light-grey">Login adm</a>
+            </div>
+            <div class="w3-col s3">
+                <a href="#contact" class="w3-btn-block w3-light-grey">Contato</a>
+            </div>
+        </div>
+    </div>
 
-  </div>
+    <!-- ------------------------------------------------------------------------------------------------------- Content -->
+    <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
 
-</div>
+        <div class="w3-panel">
+            <h1><b>UFRPE - Reports</b></h1>
+            <p>Ajude a sua Universidade saber dos problemas que a cercam</p>
+        </div>
+
+        <!-- ----------------------------------------------------------------------------------------------------- Slideshow -->
+        <div class="w3-container">
+
+            <div class="w3-display-container mySlides">
+                <img src="w3images/coffee.jpg" style="width:100%">
+                <div class="w3-display-topleft w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Reports 1</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="w3images/workbench.jpg" style="width:100%">
+                <div class="w3-display-middle w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Reports 2</span>
+                </div>
+            </div>
+
+            <div class="w3-display-container mySlides">
+                <img src="w3images/sound.jpg" style="width:100%">
+                <div class="w3-display-topright w3-container w3-padding-32">
+                    <span class="w3-white w3-padding-large w3-animate-bottom">Reports 3</span>
+                </div>
+            </div>
+
+            <!-- ------------------------------------------------------------------------------------ Slideshow next/previous buttons -->
+            <div class="w3-container w3-dark-grey w3-padding-8 w3-xlarge">
+                <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i></div>
+                <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i></div>
+
+                <div class="w3-center">
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(0)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+                    <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- ---------------------------------------------------------------------------------------------------- Formulario Grid -->
+        <div class="w3-row-padding w3-container" id="newReport">
+            <div class="w3-center w3-padding-64">
+                <span class="w3-xlarge w3-bottombar w3-border-dark-grey  w3-padding-16">Reporte Agora !</span>
+            </div>
+
+            <div class="w3-container">
+                <form class="w3-container w3-border w3-center  w3-round-xlarge" style="background-color: whitesmoke">
+                    <!-- ----------------------------------------------------------------- INformando -- IMAGEM DE SELECAO -->
+                    <div>
+                        <p>
+                            <w3-container class="w3-red ">Clique na imagem abaixo no local ocorrido...</w3-container>
+                        </p>
+
+                    </div>
+                    <!-- ----------------------------------------------------------------- IMAGEM DE SELECAO -->
+                    <img class="map" class="w3-center w3-padding-64" src="w3images/ufrpe.png" usemap="#image-maps-ufrpe" style="width:100%">
+                    <map name="image-maps-ufrpe" id="ImageMapsCom-image-maps-2017-01-23-104905">
+    
+<area ng-click="placeShow('sede')" alt="sede" title="sede" shape="poly" coords="362,223,339,182,321,139,356,50,449,55,537,93,541,104,467,169"
+    hidefocus="true" />
+<area ng-click="placeShow('zootecnia')" alt="zootecnia" title="zootecnia" shape="poly" coords="62,419,230,483,353,381,117,368"
+     />
+<area ng-click="placeShow('transrural')" alt="transrural" title="transrural" shape="poly" coords="362,368,477,380,545,380,695,344,685,377,518,417,367,397"
+     />
+<area ng-click="placeShow('veterinaria')" alt="veterinaria" title="veterinaria" shape="poly" coords="571,104,618,112,675,147,528,201,476,174"
+     />
+<area ng-click="placeShow('cegoe')" alt="cegoe" title="cegoe" shape="poly" coords="485,182,584,248,520,285,425,224"  />
+<area ng-click="placeShow('cenapesq')" alt="cenapesq" title="cenapesq" shape="poly" coords="389,251,421,235,517,299,488,328"
+     />
+<area ng-click="placeShow('prefeitura')" alt="prefeitura" title="prefeitura" shape="poly" coords="534,373,571,352,536,305,499,326"
+     />
+<area ng-click="placeShow('edFisica')" alt="edFisica" title="edFisica" shape="poly" coords="570,297,611,326,678,307,626,270"
+     />
+<area ng-click="placeShow('ceagri2')" alt="ceagri2" title="ceagri2" shape="poly" coords="853,216,897,313,964,289,934,212"
+     />
+<area ng-click="placeShow('florestal')" alt="florestal" title="florestal" shape="poly" coords="754,217,769,342,898,321,846,219"
+     />
+<area ng-click="placeShow('pesca')" alt="pesca" title="pesca" shape="poly" coords="972,309,829,339,849,393,986,371"  />
+</map>
+                    <br>
+                    <br>
+                    <br>
+
+
+                    <textarea class="w3-input w3-border w3-round-xxlarge " maxlength="600" rows="7" cols="50" ng-model="report.description" required></textarea>
+                    <label class="w3-label w3-validate">Descreva o problema ocorrido</label>
+                    <br>
+                    <br>
+                    <input class="w3-input w3-border w3-round-xxlarge" maxlength="14" type="text" ng-model="report.cpf" name="first" required>
+                    <label class="w3-label w3-validate">Digite seu CPF/RG/Matricula da Universidade</label>
+                    <br>
+                    <br>
+                    <input class="w3-input w3-border w3-round-xxlarge" type="text" maxlength="45" name="email" ng-model="report.email" required>
+                    <label class="w3-label  w3-validate">Digite seu email (que você está habituado a usar)</label>
+                    <br>
+                    <br>
+
+                    <label class="w3-label w3-center w3-validate">Insira a foto do local (seria ótimo para averiguar a vericidade do caso)</label>
+
+                    <input type="file" ng-model="file" name="inputFile" base-sixty-four-input required maxsize="500" accept="image/*">
+
+                    <br>
+                    <br>
+                    <button class="w3-btn w3-section w3-teal w3-ripple" type="submit" ng-click="saveReport()">Salvar</button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+        <!-- ---------------------------------------------------------------------------------------------------------- Contact -->
+        <div class="w3-center w3-padding-64" id="contact">
+            <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Aconteceu algum problema no site?!</span>
+            <br><br>
+            <br>
+            <label>Envie um email para: marcoseduflautista1@gmail.com</label>
+        </div>
+
+
+        <!-- ------------------------------------------------------------------------------------- login adm Grid -->
+        <div class="w3-row-padding" id="about">
+            <div id="id01" class="w3-modal">
+                <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+                    <div class="w3-center"><br>
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                            title="Close Modal">×</span>
+
+                    </div>
+
+                    <form ng-submit="autenticar()" class="w3-container">
+                        <div class="w3-section">
+                            <label><b>Email</b></label>
+                            <input ng-model="user.email" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Digite seu email" name="usrname"
+                                required>
+                                <label><b>Senha</b></label>
+                                <input ng-model="user.password" class="w3-input w3-border" type="text" placeholder="Digite sua senha" name="psw" required>
+                                <button class="w3-btn-block w3-green w3-section w3-padding" type="submit">Entrar</button>
+                        </div>
+                    </form>
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-left w3-padding w3-hide-small"><a href="#contact">Esqueceu a senha ou ainda não foi cadastrado? entre em contato conosco.</a></span>
+                        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/slideShow.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
+
+        <script type="text/javascript">
+                                         $(function () {
+                                             $('.map').maphilight({ fade: false });
+                                         });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#getData").click(function () {
+                    $.getJSON("demo_ajax_json.js", function (result) {
+                        $.each(result, function (i, field) {
+                            $("div").append(field + " ");
+                        });
+                    });
+                });
+            });
+        </script>
 </body>
 
 </html>
