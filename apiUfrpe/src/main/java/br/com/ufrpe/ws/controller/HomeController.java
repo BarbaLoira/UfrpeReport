@@ -11,4 +11,8 @@ public class HomeController {
 	public String irParaHome(){
 		return "index";
 	}
+	@RequestMapping("/adm")
+	public String irParaAdm(){
+		return "adm";
+	}
 }

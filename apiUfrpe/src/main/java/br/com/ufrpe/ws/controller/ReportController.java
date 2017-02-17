@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ufrpe.ws.model.Login;
 import br.com.ufrpe.ws.model.Report;
 import br.com.ufrpe.ws.repository.ReportRepository;
 
@@ -28,6 +29,8 @@ public class ReportController {
 		this.reportRepository.save(report);
 
 	}
+	
+
 
 	@ResponseBody
 	@RequestMapping(value = "/reports-total")
