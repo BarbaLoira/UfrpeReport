@@ -11,6 +11,8 @@ import javax.persistence.Table;
 public class Report {
 	
 	@Id
+	@GeneratedValue
+	private Integer id;
 	@Column(name = "cpf")
 	private String cpf;
 	@Column(name = "email")
@@ -25,9 +27,18 @@ public class Report {
 	private String base64;
 	@Column(name = "situacao")
 	private String situacao;
+	
 
 
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getSituacao() {
 		return situacao;
 	}
