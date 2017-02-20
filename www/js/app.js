@@ -13,6 +13,26 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     $scope.auxImg;
 
 
+
+$scope.alterarSituacao= function(r){
+
+
+
+  $http({ method: 'POST', url: 'http://localhost:8080/adm/updateReport', data: r })
+            .then(function successCallback(response) {
+            window.alert(response.status);
+                //console.log(reposnse.status);
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+              window.alert(response.data.message);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+}
+
+
     $scope.autenticar = function () {
         $http({ method: 'POST', url: 'http://localhost:8080/login/autentication', data: $scope.user })
             .then(function successCallback(response) {
@@ -26,9 +46,10 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
                 // or server returns response with an error status.
             });
     }
-    $scope.showRow = function (description, auxImg) {
+    $scope.showRow = function (description, auxImg,situacao) {
         $scope.description = description;
         $scope.auxImg = auxImg;
+        $scope.situacao = situacao;
         var element = document.getElementById('id01');
         element.style.display = 'block';
     }
@@ -38,7 +59,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
     }
     $scope.getReports = function () {
-        $http({ method: 'GET', url: 'http://localhost:8080/reports/reports-total' })
+        $http({ method: 'GET', url: 'http://localhost:8080/reports/reports-total-nao-resolvido' })
             .then(function successCallback(response) {
                 $scope.reports = response.data;
                 console.log(response.data);

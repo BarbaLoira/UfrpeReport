@@ -25,7 +25,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
 
-
+<script src="./js/app.js"></script>
+<script src="./js/interceptor/token-interceptor.js"></script>
 
 </head>
 <body ng-controller="mainController">
@@ -224,17 +225,20 @@
 
 					<form ng-submit="autenticar()" class="w3-container">
 						<div class="w3-section">
-							<label><b>Email</b></label> <input ng-model="user.email"
+							<label><b>Email</b></label> 
+							<input ng-model="user.email"
 								class="w3-input w3-border w3-margin-bottom" type="text"
-								placeholder="Digite seu email" name="usrname" required>
+								placeholder="Digite seu email" name="username" required>
 							<label><b>Senha</b></label> <input ng-model="user.password"
 								class="w3-input w3-border" type="text"
-								placeholder="Digite sua senha" name="psw" required>
+								placeholder="Digite sua senha" name="password"  required>
+								<<!--type="password"  -->
 							<button class="w3-btn-block w3-green w3-section w3-padding"
-								type="submit">Entrar</button>
+								type="submit" ng-clik="autenticar()">Entrar</button>
+
 						</div>
 					</form>
-
+					
 					<div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
 
 						<span
@@ -254,8 +258,9 @@
 
 
 
-		<script type="text/javascript" src="./js/jquery.maphilight.min.js"></script>
-		<script type="text/javascript" src="./js/slideShow.js"></script>
+		<script type="text/javascript" src="./js/util/jquery.maphilight.min.js"></script>
+
+		<script type="text/javascript" src="./js/util/slideShow.js"></script>
 
 
 
@@ -281,9 +286,9 @@
 				});
 			});
 		</script>
-		<script src="./js/app.js"></script>
-		<script src="./js/interceptor/token-interceptor.js"></script>
-		<script type="text/javascript" src="./js/angular-base64-upload.js"></script>
+
+
+		<script type="text/javascript" src="./js/util/angular-base64-upload.js"></script>
 </body>
 
 </html>

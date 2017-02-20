@@ -10,7 +10,7 @@
 
 <head>
     <script src="js/angular.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/appHome.js"></script>
 
     <script type="text/javascript" src="js/angular-base64-upload.js"></script>
 </head>
@@ -18,18 +18,22 @@
 <body ng-controller="indexController">
 
     <!-- Links (sit on top) -->
-    <div class="w3-top">
-        <div class="w3-row w3-large">
-            <div class="w3-col s3">
-                <a href="#" class="w3-btn-block w3-light-grey">Início</a>
+    <div class="w3-top" style="width: 100%;">
+        <div class="w3-row w3-large" >
+            <div class="w3-col s3" >
+                <a href="#" class="w3-btn-block w3-light-grey " >Início</a>
             </div>
             <div class="w3-col s3">
                 <a href="#newReport" class="w3-btn-block w3-light-grey">Reportar</a>
             </div>
             <div class="w3-col s3">
-                <a onclick="document.getElementById('id01').style.display='block'" class="w3-btn-block w3-light-grey">Login adm</a>
+                <a href="historicoReports.html" class="w3-btn-block w3-light-grey">Historicos de Reports</a>
             </div>
-            <div class="w3-col s3">
+            <div class="w3-col s3" style="width: 15%;">
+             <!--     <a href="adm.html" class="w3-btn-block w3-light-grey">Login adm</a>-->
+             <a onclick="document.getElementById('id01').style.display='block'" class="w3-btn-block w3-light-grey">Login adm</a>
+            </div>
+            <div class="w3-col s3"  style="width: 10%;">
                 <a href="#contact" class="w3-btn-block w3-light-grey">Contato</a>
             </div>
         </div>
@@ -45,25 +49,25 @@
 
         <!-- ----------------------------------------------------------------------------------------------------- Slideshow -->
         <div class="w3-container">
-
+ 
             <div class="w3-display-container mySlides">
-                <img src="w3images/coffee.jpg" style="width:100%">
+                <img src="w3images/sound.jpg" style="width:100%">
                 <div class="w3-display-topleft w3-container w3-padding-32">
-                    <span class="w3-white w3-padding-large w3-animate-bottom">Reports 1</span>
+                    <span class="w3-white w3-padding-large w3-animate-bottom">obras inacabadas no campus</span>
                 </div>
             </div>
 
             <div class="w3-display-container mySlides">
                 <img src="w3images/workbench.jpg" style="width:100%">
                 <div class="w3-display-middle w3-container w3-padding-32">
-                    <span class="w3-white w3-padding-large w3-animate-bottom">Reports 2</span>
+                    <span class="w3-white w3-padding-large w3-animate-bottom">falta de iluminação</span>
                 </div>
             </div>
 
             <div class="w3-display-container mySlides">
-                <img src="w3images/sound.jpg" style="width:100%">
+                 <img src="w3images/coffe.jpg" style="width:100%">
                 <div class="w3-display-topright w3-container w3-padding-32">
-                    <span class="w3-white w3-padding-large w3-animate-bottom">Reports 3</span>
+                    <span class="w3-white w3-padding-large w3-animate-bottom">estacionado em vaga proibida </span>
                 </div>
             </div>
 
@@ -131,7 +135,8 @@
                     <label class="w3-label w3-validate">Descreva o problema ocorrido</label>
                     <br>
                     <br>
-                    <input class="w3-input w3-border w3-round-xxlarge" maxlength="14" type="text" ng-model="report.cpf" name="first" required>
+                    <input class="w3-input w3-border w3-round-xxlarge" maxlength="14" type="text" ng-model="report.cpf" name="first" required><br>
+                    <span id="resposta"></span><br>
                     <label class="w3-label w3-validate">Digite seu CPF/RG/Matricula da Universidade</label>
                     <br>
                     <br>
@@ -152,67 +157,133 @@
         </div>
 
         <hr>
-        <!-- ---------------------------------------------------------------------------------------------------------- Contact -->
-        <div class="w3-center w3-padding-64" id="contact">
-            <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Aconteceu algum problema no site?!</span>
-            <br><br>
+
+
+        <div class="w3-center w3-responsive">
+            <!-- ---------------------------------------------------------------------------------------------------------- Table Infomation -->
+            <table class="w3-table-all w3-card-2 w3-hoverable w3-hover-border-blue">
+                <tr class="w3-blue">
+                    <th style="min-width:30px">Lugar</th>
+                    <th>Descricao</th>
+                    <th>Imagem</th>
+                    <th>Situação</th>
+                    <th>Visualizar</th>
+                </tr>
+                <tr ng-repeat="r in reports">
+
+                    <th>{{r.place}}</th>
+
+                    <th class="descrpt" style="min-width: 13px">{{r.description}}</th>
+
+                    <th><img style="max-width:30%;" style="max-height:10%" src="data:image/jpg;base64,{{r.base64}}"></th>
+
+                    <th>{{r.situacao}}</th>
+                         
+                    <th>
+                        <a ng-click="showRow(r.description,r.base64)" class="w3-btn-block w3-light-grey">Visualizar</a>
+                    </th>
+
+                </tr>
+            </table>
             <br>
-            <label>Envie um email para: marcoseduflautista1@gmail.com</label>
-        </div>
+
+            <hr>
 
 
-        <!-- ------------------------------------------------------------------------------------- login adm Grid -->
-        <div class="w3-row-padding" id="about">
-            <div id="id01" class="w3-modal">
-                <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
-                    <div class="w3-center"><br>
-                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
-                            title="Close Modal">×</span>
+            <!-- ---------------------------------------------------------------------------------------------------------- Contact -->
+            <div class="w3-center w3-padding-64" id="contact">
+                <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Aconteceu algum problema no site?!</span>
+                <br><br>
+                <br>
+                <label>Envie um email para: marcoseduflautista1@gmail.com</label>
+            </div>
 
-                    </div>
 
-                    <form ng-submit="autenticar()" class="w3-container">
-                        <div class="w3-section">
-                            <label><b>Email</b></label>
-                            <input ng-model="user.email" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Digite seu email" name="usrname"
-                                required>
-                                <label><b>Senha</b></label>
-                                <input ng-model="user.password" class="w3-input w3-border" type="text" placeholder="Digite sua senha" name="psw" required>
-                                <button class="w3-btn-block w3-green w3-section w3-padding" type="submit">Entrar</button>
+            <!-- ------------------------------------------------------------------------------------- login adm Grid -->
+            <div class="w3-row-padding" id="about">
+                <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+                        <div class="w3-center"><br>
+                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                                title="Close Modal">×</span>
+
                         </div>
-                    </form>
 
-                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                        <form ng-submit="getUser()" class="w3-container">
+                            <div class="w3-section">
+                                <label><b>Email</b></label>
+                                <input ng-model="user.email" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Digite seu email" name="usrname"
+                                    required>
+                                    <label><b>Senha</b></label>
+                                    <input ng-model="user.password" class="w3-input w3-border" type="text" placeholder="Digite sua senha" name="psw" required>
+                                    <button class="w3-btn-block w3-green w3-section w3-padding"  href="adm.html" type="submit">Entrar</button>
+                            </div>
+                        </form>
 
-                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-left w3-padding w3-hide-small"><a href="#contact">Esqueceu a senha ou ainda não foi cadastrado? entre em contato conosco.</a></span>
-                        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
+                        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+
+                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-left w3-padding w3-hide-small"><a href="#contact">Esqueceu a senha ou ainda não foi cadastrado? entre em contato conosco.</a></span>
+                            <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
+                        </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
 
-        <script type="text/javascript" src="js/slideShow.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
+            <!-- ------------------------------------------------------------------------------------- Visualizar info table-->
+            <div class="w3-row-padding">
+                <div id="id02" class="w3-modal">
+                    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
-        <script type="text/javascript">
-                                         $(function () {
-                                             $('.map').maphilight({ fade: false });
-                                         });
-        </script>
-        <script>
-            $(document).ready(function () {
-                $("#getData").click(function () {
-                    $.getJSON("demo_ajax_json.js", function (result) {
-                        $.each(result, function (i, field) {
-                            $("div").append(field + " ");
+                        <div class="w3-center w3-padding-8"><br>
+                            <span onclick="document.getElementById('id02').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                                title="Close Modal">×</span>
+
+                        </div>
+
+
+                        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+
+                            <img style="max-width:100%;" style="max-height:100%" src="data:image/jpg;base64,{{auxImg}}" />
+                            <br>
+                            <br>
+                            <div class="w3-panel w3-border w3-hover-border-blue w3-border-grey">
+                                <label>{{description}}</label>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <script type="text/javascript" src="js/slideShow.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script type="text/javascript" src="js/jquery.maphilight.min.js"></script>
+
+            <script type="text/javascript">
+                                           $(function () {
+                                               $('.map').maphilight({ fade: false });
+                                           });
+            </script>
+            <script>
+                $(document).ready(function () {
+                    $("#getData").click(function () {
+                        $.getJSON("demo_ajax_json.js", function (result) {
+                            $.each(result, function (i, field) {
+                                $("div").append(field + " ");
+                            });
                         });
                     });
                 });
-            });
-        </script>
+            </script>
+
 </body>
 
 </html>

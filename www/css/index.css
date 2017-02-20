@@ -19,6 +19,13 @@ html,body,h1,h2,h3,h4 {
        max-width: 350px;
   }
 
+  .descrptAdm{
+      overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+       max-width: 100px;
+  }
+
   #backImage{
         background-repeat: no-repeat;
      background-image: url("/w3images/backImage.jpg");

@@ -16,7 +16,6 @@ public interface LoginRepository extends JpaRepository<Login, Integer> {
 	@Query(value = "Select l from Login l where l.email=:pemail and l.password=:psenha")
 	public Login userValidation(@Param("pemail") String email, @Param("psenha") String senha);
 
-	@Query(value = "Select l from Login l where l.token=:ptoken")
-	public Login findToken(@Param("ptoken") String token);
+	
 
 }

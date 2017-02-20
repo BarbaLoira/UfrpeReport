@@ -2,12 +2,14 @@ package br.com.ufrpe.ws.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "report")
 public class Report {
+	
 	@Id
 	@Column(name = "cpf")
 	private String cpf;
@@ -21,6 +23,18 @@ public class Report {
 	private String filename;
 	@Column(name = "base64")
 	private String base64;
+	@Column(name = "situacao")
+	private String situacao;
+
+
+	
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
 
 	public String getFilename() {
 		return filename;

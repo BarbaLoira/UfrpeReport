@@ -18,16 +18,6 @@ public class Login {
 	private String password;
 	@Column(name = "token")
 	private String token;
-	@Column(name = "dataToken")
-	private Date dataToken;
-
-	public Date getDataToken() {
-		return dataToken;
-	}
-
-	public void setDataToken(Date dataToken) {
-		this.dataToken = dataToken;
-	}
 
 	public String getToken() {
 		return token;
