@@ -11,17 +11,17 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     $scope.image;
     $scope.description;
     $scope.auxImg;
-
+$scope.cpf;
 
     $scope.autenticar = function () {
         $http({ method: 'POST', url: 'http://localhost:8080/login/autentication', data: $scope.user })
             .then(function successCallback(response) {
-                window.alert(response.status);
+              //  window.alert(response.status);
                 //console.log(reposnse.status);
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-                window.alert(response.data.message);
+              //  window.alert(response.data.message);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
@@ -38,10 +38,10 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
     }
     $scope.getUser = function () {
-        window.alert($scope.user.email);
+      //  window.alert($scope.user.email);
         $http({ method: 'POST', url: 'http://localhost:8080/adm/getAdm', data: $scope.user })
             .then(function successCallback(response) {
-                window.alert(response.status);
+             //   window.alert(response.status);
                
                     location.href = "adm.html";
                 
@@ -58,7 +58,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     };
 
     $scope.getReports = function () {
-        $http({ method: 'GET', url: 'http://localhost:8080/home/reports-total' })
+        $http({ method: 'GET', url: 'http://localhost:8080/home/reports-total-nao-resolvido' })
             .then(function successCallback(response) {
                 $scope.reports = response.data;
                 console.log(response.data);
@@ -75,6 +75,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     $scope.saveReport = function () {
         $scope.report.filename = $scope.file.filename;
         $scope.report.base64 = $scope.file.base64;
+     $scope.report.situacao = "não resolvido"
         $http({ method: 'POST', url: 'http://localhost:8080/home/insertReport', data: $scope.report })
             .then(function successCallback(response) {
                 window.alert("Enviado com Sucesso!");
