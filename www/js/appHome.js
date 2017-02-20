@@ -77,12 +77,12 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
         $scope.report.base64 = $scope.file.base64;
         $http({ method: 'POST', url: 'http://localhost:8080/home/insertReport', data: $scope.report })
             .then(function successCallback(response) {
-                window.alert(response.status);
+                window.alert("Enviado com Sucesso!");
                 //console.log(reposnse.status);
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-                window.alert(response.status);
+                window.alert("Erro ao enviar");
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
