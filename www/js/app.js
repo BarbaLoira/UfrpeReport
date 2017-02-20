@@ -59,7 +59,7 @@ $scope.alterarSituacao= function(r){
 
     }
     $scope.getReports = function () {
-        $http({ method: 'GET', url: 'http://localhost:8080/reports/reports-total-nao-resolvido' })
+        $http({ method: 'GET', url: 'http://localhost:8080/adm/reports-total' })
             .then(function successCallback(response) {
                 $scope.reports = response.data;
                 console.log(response.data);
