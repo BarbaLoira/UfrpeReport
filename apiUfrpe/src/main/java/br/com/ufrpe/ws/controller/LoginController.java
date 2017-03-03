@@ -25,46 +25,66 @@ public class LoginController {
 	LoginRepository loginRepository;
 
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.POST, value = "/autentication")
-	public LoginResponse insert(@RequestBody Login login) throws ServletException {
-		String token = "Usuario não encontrado";
-		if (login == null) {
-			throw new ServletException("Dado nulo");
-		} else if (login.getEmail().equals("") || login.getPassword().equals("") || login.getPassword().equals(null)
-				|| login.getEmail().equals(null)) {
+	@RequestMapping(method = RequestMethod.POST, value = "/getUser")
+	public LoginResponse getUser(@RequestBody Login login) throws ServletException {
 
-			throw new ServletException("Informações incompletas");
+		String token = "";
+		Login lgn = this.loginRepository.userValidation(login.getEmail(), login.getPassword());
 
-		} else {
-		
-			Login lgn = this.loginRepository.userValidation(login.getEmail(), login.getPassword());
-	
-			if (lgn == null) {
-				throw new ServletException("Usuário não encontrado");
-			}
-			Date dateToken = new Date(System.currentTimeMillis() + 1 * 60 * 1000);
-			token = Jwts.builder().setSubject(lgn.getEmail()).signWith(SignatureAlgorithm.HS512, "banana")
-					.setExpiration(dateToken).compact();
+		if (lgn != null) {
+			
 
-			//lgn.setToken(token);
+				token = Jwts.builder().setSubject(lgn.getEmail()).signWith(SignatureAlgorithm.HS512, lgn.getPassword())
+						.compact();
+				
+				token = login.getEmail() + " " + token;
+				return new LoginResponse(token);
 
-			//System.out.println("antes linha save");
-			//this.loginRepository.save(lgn);
-			System.out.println("fim loginController");
-			return new LoginResponse(token);
+			
 		}
+
+		else {
+
+			throw new ServletException("Usuário não encontrado");
+		}
+
+	}
+
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, value = "/getAdm")
+	public LoginResponse getAdm(@RequestBody Login login) throws ServletException {
+
+		String token = "";
+		Login lgn = this.loginRepository.userValidation(login.getEmail(), login.getPassword());
+
+		if (lgn != null) {
+			if (lgn.getTypeUser().equals("adm")) {
+
+				token = Jwts.builder().setSubject(lgn.getEmail()).signWith(SignatureAlgorithm.HS512, lgn.getPassword())
+						.compact();
+				// System.out.print(token);
+				token = login.getEmail() + " " + token;
+				return new LoginResponse(token);
+
+			} else {
+				throw new ServletException("Usuário não é adm");
+			}
+		}
+
+		else {
+
+			throw new ServletException("Usuário não encontrado");
+		}
+
 	}
 
 	private class LoginResponse {
-		private String token;
+		public String token;
 
 		public LoginResponse(String token) {
 			this.token = token;
 		}
 
-		public String getToken() {
-			return this.token;
-		}
 	}
 
 }

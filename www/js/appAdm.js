@@ -14,39 +14,39 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
 
-$scope.alterarSituacao= function(r){
+    $scope.alterarSituacao = function (r) {
 
 
 
-  $http({ method: 'POST', url: 'http://localhost:8080/adm/updateReport', data: r })
+        $http({ method: 'POST', url: 'http://localhost:8080/adm/updateReport', data: r })
             .then(function successCallback(response) {
-            window.alert(response.status);
+                window.alert(response.status);
                 //console.log(reposnse.status);
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-              window.alert(response.data.message);
+                window.alert(response.data.message);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
 
-}
+    }
 
 
     $scope.autenticar = function () {
         $http({ method: 'POST', url: 'http://localhost:8080/login/autentication', data: $scope.user })
             .then(function successCallback(response) {
-            window.alert(response.status);
+                window.alert(response.status);
                 //console.log(reposnse.status);
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-              window.alert(response.data.message);
+                window.alert(response.data.message);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
     }
-    $scope.showRow = function (description, auxImg,situacao) {
+    $scope.showRow = function (description, auxImg, situacao) {
         $scope.description = description;
         $scope.auxImg = auxImg;
         $scope.situacao = situacao;
@@ -89,23 +89,34 @@ $scope.alterarSituacao= function(r){
             });
     };
 
+
+    $scope.verificarUsuario = function () {
+
+        if (localStorage.getItem("token") === null || localStorage.getItem("token") === "") {
+            window.alert("Usuario não autenticado");
+            location.href = "index.html";
+
+        }
+        else {
+            $http({ method: 'POST', url: 'http://localhost:8080/adm/verificarAdm', data: localStorage.getItem("token") })
+                .then(function successCallback(response) {
+                    window.alert("Usuario autenticado");
+
+                }, function errorCallback(response) {
+                    window.alert("Usuario nao autenticado");
+                    location.href = "index.html";
+                });
+        }
+    };
+
+    $scope.sair = function () {
+        localStorage.setItem("token", "");
+    }
+
+
+    $scope.verificarUsuario();
     $scope.getReports();
 });
 
 
 
-app.controller("inserirReportsController", function () {
-
-
-
-});
-
-app.controller("listReportsController", function () {
-
-
-});
-
-app.controller("loginAdmController", function () {
-
-
-});

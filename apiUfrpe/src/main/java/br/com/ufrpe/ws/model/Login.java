@@ -1,6 +1,6 @@
 package br.com.ufrpe.ws.model;
 
-import java.sql.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,19 +12,40 @@ import javax.persistence.Table;
 public class Login {
 
 	@Id
+	@Column(name = "cpf")
+	private String cpf;
+	@Column(name = "name")
+	private String name;
 	@Column(name = "email")
 	private String email;
 	@Column(name = "password")
 	private String password;
-	@Column(name = "token")
-	private String token;
+	@Column(name = "type_user")
+	private String typeUser;
+	
 
-	public String getToken() {
-		return token;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTypeUser() {
+		return typeUser;
+	}
+
+	public void setTypeUser(String typeUser) {
+		this.typeUser = typeUser;
 	}
 
 	public String getEmail() {

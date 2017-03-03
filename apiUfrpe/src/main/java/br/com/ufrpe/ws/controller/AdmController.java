@@ -3,6 +3,7 @@ package br.com.ufrpe.ws.controller;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import br.com.ufrpe.ws.model.Login;
 import br.com.ufrpe.ws.model.Report;
 import br.com.ufrpe.ws.repository.LoginRepository;
 import br.com.ufrpe.ws.repository.ReportRepository;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @RequestMapping("/adm")
@@ -37,17 +39,8 @@ public class AdmController {
 		return reportsAll;
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/getAdm")
-	public ResponseEntity<Login> getAdm(@RequestBody Login login) {
-		Login lgn = this.loginRepository.userValidation(login.getEmail(), login.getPassword());
-		if (lgn == null) {
-			 	return new ResponseEntity<Login>(lgn, HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			return new ResponseEntity<Login>(lgn, HttpStatus.OK);
-		}
-	}
-
+	
+	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/updateReport")
 	public void setSituacao(@RequestBody Report report) {
@@ -58,6 +51,15 @@ public class AdmController {
 		this.reportRepository.save(reportFind);
 
 		System.out.println(report.getSituacao() + "   " + reportFind.getSituacao());
+
+	}
+
+	private class LoginResponse {
+		public String token;
+
+		public LoginResponse(String token) {
+			this.token = token;
+		}
 
 	}
 

@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html ng-app="appReport">
 <title>UFRPE - Reports</title>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="css/index.css">
 
 <head>
     <script src="js/angular.min.js"></script>
-    <script src="js/appHome.js"></script>
-
+    <script src="js/index.js"></script>
     <script type="text/javascript" src="js/angular-base64-upload.js"></script>
-    <script src="js/funcoes.js" type="text/javascript"></script>
+
 </head>
 
 <body ng-controller="indexController">
 
+
+
+
+
     <!-- Links (sit on top) -->
     <div class="w3-top" style="width: 100%;">
-        <div class="w3-row w3-large" >
-            <div class="w3-col s3" >
-                <a href="#" class="w3-btn-block w3-light-grey " >Início</a>
+        <div class="w3-row w3-large">
+
+            <div class="w3-col s3 w3-light-grey" style="width: 20%;">
+                <a href="#" class="w3-btn-block w3-light-grey ">Início</a>
             </div>
-            <div class="w3-col s3">
-                <a href="#newReport" class="w3-btn-block w3-light-grey">Reportar</a>
+
+            <div class="w3-col s3" style="width: 20%;">
+                <a onclick="document.getElementById('loginUser').style.display='block'" class="w3-btn-block w3-light-grey">Reporte Agora</a>
             </div>
-            <div class="w3-col s3">
+
+            <div class="w3-col s3" style="width: 20%;">
                 <a href="historicoReports.html" class="w3-btn-block w3-light-grey">Historico de Reports</a>
             </div>
-            <div class="w3-col s3" style="width: 15%;">
-             <!--     <a href="adm.html" class="w3-btn-block w3-light-grey">Login adm</a>-->
-             <a onclick="document.getElementById('id01').style.display='block'" class="w3-btn-block w3-light-grey">Login adm</a>
+
+            <div class="w3-col s3" style="width: 20%;">
+                <!--     <a href="adm.html" class="w3-btn-block w3-light-grey">Login adm</a>-->
+                <a onclick="document.getElementById('loginAdm').style.display='block'" class="w3-btn-block w3-light-grey">Entrar adm</a>
             </div>
-            <div class="w3-col s3"  style="width: 10%;">
+
+            <div class="w3-col s3" style="width: 20%;">
                 <a href="#contact" class="w3-btn-block w3-light-grey">Contato</a>
             </div>
+
         </div>
     </div>
 
@@ -50,7 +61,7 @@
 
         <!-- ----------------------------------------------------------------------------------------------------- Slideshow -->
         <div class="w3-container">
- 
+
             <div class="w3-display-container mySlides">
                 <img src="w3images/sound.jpg" style="width:100%">
                 <div class="w3-display-topleft w3-container w3-padding-32">
@@ -66,7 +77,7 @@
             </div>
 
             <div class="w3-display-container mySlides">
-                 <img src="w3images/coffe.jpg" style="width:100%">
+                <img src="w3images/coffe.jpg" style="width:100%">
                 <div class="w3-display-topright w3-container w3-padding-32">
                     <span class="w3-white w3-padding-large w3-animate-bottom">estacionado em vaga proibida </span>
                 </div>
@@ -82,88 +93,6 @@
                     <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
                     <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
                 </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- ---------------------------------------------------------------------------------------------------- Formulario Grid -->
-        <div class="w3-row-padding w3-container" id="newReport">
-            <div class="w3-center w3-padding-64">
-                <span class="w3-xlarge w3-bottombar w3-border-dark-grey  w3-padding-16">Reporte Agora !</span>
-            </div>
-
-            <div class="w3-container">
-                <form class="w3-container w3-border w3-center  w3-round-xlarge" style="background-color: whitesmoke">
-                    <!-- ----------------------------------------------------------------- INformando -- IMAGEM DE SELECAO -->
-                    <div>
-                        <p>
-                            <w3-container class="w3-red ">Clique na imagem abaixo no local ocorrido...</w3-container>
-                        </p>
-
-                    </div>
-                    <!-- ----------------------------------------------------------------- IMAGEM DE SELECAO -->
-                    <img class="map" class="w3-center w3-padding-64" src="w3images/ufrpe.png" usemap="#image-maps-ufrpe" style="width:100%">
-                    <map name="image-maps-ufrpe" id="ImageMapsCom-image-maps-2017-01-23-104905">
-    
-<area ng-click="placeShow('sede')" alt="sede" title="sede" shape="poly" coords="362,223,339,182,321,139,356,50,449,55,537,93,541,104,467,169"
-    hidefocus="true" />
-     <area ng-click="placeShow('Biblioteca')" alt="Biblioteca" title="Biblioteca" shape="poly" coords="528,56,548,90,617,97,634,72"
-     />
-      <area ng-click="placeShow('Extensao')" alt="Extensao" title="Extensao" shape="poly" coords="644,74,630,102,700,142,722,109"
-     />
-<area ng-click="placeShow('zootecnia')" alt="zootecnia" title="zootecnia" shape="poly" coords="62,419,230,483,353,381,117,368"
-     />
-<area ng-click="placeShow('transrural')" alt="transrural" title="transrural" shape="poly" coords="362,368,477,380,545,380,695,344,685,377,518,417,367,397"
-     />
-<area ng-click="placeShow('veterinaria')" alt="veterinaria" title="veterinaria" shape="poly" coords="571,104,618,112,675,147,528,201,476,174"
-     />
-<area ng-click="placeShow('cegoe')" alt="cegoe" title="cegoe" shape="poly" coords="485,182,584,248,520,285,425,224"  />
-<area ng-click="placeShow('cenapesq')" alt="cenapesq" title="cenapesq" shape="poly" coords="389,251,421,235,517,299,488,328"
-     />
-<area ng-click="placeShow('prefeitura')" alt="prefeitura" title="prefeitura" shape="poly" coords="534,373,571,352,536,305,499,326"
-     />
-<area ng-click="placeShow('edFisica')" alt="edFisica" title="edFisica" shape="poly" coords="570,297,611,326,678,307,626,270"
-     />
-<area ng-click="placeShow('ceagri2')" alt="ceagri2" title="ceagri2" shape="poly" coords="858,224,878,256,945,245,934,224,924,217"
-     />
-     <area ng-click="placeShow('ceagri1')" alt="ceagri1" title="ceagri1" shape="poly" coords="884,266,945,253,968,300,904,314"
-     />
-<area ng-click="placeShow('florestal')" alt="florestal" title="florestal" shape="poly" coords="754,217,769,342,898,321,846,219"
-     />
-<area ng-click="placeShow('pesca')" alt="pesca" title="pesca" shape="poly"  coords="777,346,788,388,989,368,965,321" />
-
-
-
-
-</map>
-                    <br>
-                    <br>
-                    <br>
-
-
-                    <textarea class="w3-input w3-border w3-round-xxlarge " maxlength="600" rows="7" cols="50" ng-model="report.description" required></textarea>
-                    <label class="w3-label w3-validate">Descreva o problema ocorrido</label>
-                    <br>
-                    <br>
-                    <input class="w3-input w3-border w3-round-xxlarge" name="txtCPF" maxlength="14" onkeypress="javascript: return EntradaNumerico(event);" onblur="javascript: FG_FormatarCPF('txtCPF');" onfocus="javascript: RemoveMask('txtCPF');" type="text" id="txtCPF"    ng-model="report.cpf" name="first" required>
-                 
-                    <label class="w3-label w3-validate">Digite seu CPF</label>
-                    <br>
-                    <br>
-                    <input class="w3-input w3-border w3-round-xxlarge" type="text" maxlength="45" name="email" ng-model="report.email" required>
-                    <label class="w3-label  w3-validate">Digite seu email (que você está habituado a usar)</label>
-                    <br>
-                    <br>
-
-                    <label class="w3-label w3-center w3-validate">Insira a foto do local (seria ótimo para averiguar a vericidade do caso)</label>
-
-                    <input type="file" ng-model="file" name="inputFile" base-sixty-four-input required maxsize="500" accept="image/*">
-
-                    <br>
-                    <br>
-                    <button class="w3-btn w3-section w3-teal w3-ripple" type="submit" ng-click="saveReport()">Salvar</button>
-                </form>
             </div>
         </div>
 
@@ -189,7 +118,7 @@
                     <th><img style="max-width:30%;" style="max-height:10%" src="data:image/jpg;base64,{{r.base64}}"></th>
 
                     <th>{{r.situacao}}</th>
-                         
+
                     <th>
                         <a ng-click="showRow(r.description,r.base64)" class="w3-btn-block w3-light-grey">Visualizar</a>
                     </th>
@@ -211,32 +140,71 @@
             </div>
 
 
-            <!-- ------------------------------------------------------------------------------------- login adm Grid -->
+            <!-- ------------------------------------------------------------------------------------- login user -->
             <div class="w3-row-padding" id="about">
-                <div id="id01" class="w3-modal">
+                <div id="loginUser" class="w3-modal">
                     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
                         <div class="w3-center"><br>
-                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
-                                title="Close Modal">×</span>
+                            <span onclick="document.getElementById('loginUser').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                                title="Fechar">×</span>
 
                         </div>
 
                         <form ng-submit="getUser()" class="w3-container">
                             <div class="w3-section">
                                 <label><b>Email</b></label>
-                                <input ng-model="user.email" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Digite seu email" name="usrname"
+                                <input ng-model="user.email" class="w3-input w3-border w3-margin-bottom" autocomplete="off" type="email" placeholder="Digite seu email" name="usrname"
                                     required>
                                     <label><b>Senha</b></label>
-                                    <input ng-model="user.password" class="w3-input w3-border" type="text" placeholder="Digite sua senha" name="psw" required>
-                                    <button class="w3-btn-block w3-green w3-section w3-padding"  href="adm.html" type="submit">Entrar</button>
+                                    <input type="password" ng-model="user.password" autocomplete="off" class="w3-input w3-border" type="text" placeholder="Digite sua senha" name="psw"
+                                        required>
+                                        <button class="w3-btn-block w3-blue w3-section w3-padding" href="adm.html" type="submit">Entrar</button>
+                            </div>
+                        </form>
+
+                        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                            <div class="w3-container">
+                                <span class="w3-left w3-padding w3-hide-small"><a href="cadastro.html">Ainda não é cadastrado? clique aqui e cadastrar-se agora!</a></span>
+
+                                <span onclick="document.getElementById('loginUser').style.display='none'" class="w3-left w3-padding w3-hide-small"><a href="#contact">Esqueceu a senha? entre em contato conosco.</a></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- ------------------------------------------------------------------------------------- login adm  -->
+            <div class="w3-row-padding" id="about">
+                <div id="loginAdm" class="w3-modal">
+                    <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+                        <div class="w3-center"><br>
+                            <span onclick="document.getElementById('loginAdm').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                                title="Fechar">×</span>
+
+                        </div>
+
+                        <form ng-submit="getAdm()" class="w3-container">
+                            <div class="w3-section">
+                                <label><b>Email</b></label>
+                                <input ng-model="adm.email" autocomplete="off" class="w3-input w3-border w3-margin-bottom" type="email" placeholder="Digite seu email" name="usrname"
+                                    required>
+                                    <label><b>Senha</b></label>
+                                    <input type="password" ng-model="adm.password" autocomplete="off" class="w3-input w3-border" type="text" placeholder="Digite sua senha" name="psw"
+                                        required>
+                                        <button class="w3-btn-block w3-blue w3-section w3-padding" href="adm.html" type="submit">Entrar</button>
                             </div>
                         </form>
 
                         <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
 
-                            <span onclick="document.getElementById('id01').style.display='none'" class="w3-left w3-padding w3-hide-small"><a href="#contact">Esqueceu a senha ou ainda não foi cadastrado? entre em contato conosco.</a></span>
-                            <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red">Cancel</button>
+                            <span onclick="document.getElementById('loginAdm').style.display='none'" class="w3-left w3-padding w3-hide-small"><a href="#contact">Esqueceu a senha ou ainda não foi cadastrado? entre em contato conosco.</a></span>
+
                         </div>
 
                     </div>
@@ -245,11 +213,11 @@
 
             <!-- ------------------------------------------------------------------------------------- Visualizar info table-->
             <div class="w3-row-padding">
-                <div id="id02" class="w3-modal">
+                <div id="infoTable" class="w3-modal">
                     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
                         <div class="w3-center w3-padding-8"><br>
-                            <span onclick="document.getElementById('id02').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                            <span onclick="document.getElementById('infoTable').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
                                 title="Close Modal">×</span>
 
                         </div>
@@ -260,17 +228,54 @@
                             <img style="max-width:100%;" style="max-height:100%" src="data:image/jpg;base64,{{auxImg}}" />
                             <br>
                             <br>
-                            <div class="w3-panel w3-border w3-hover-border-blue w3-border-grey">
-                                <label>{{description}}</label>
+                            <div class="w3-panel  w3-leftbar  w3-border-blue">
+                                <label style="max-width: 100%; word-wrap: break-word">{{description}}</label>
                             </div>
-
-
 
                         </div>
 
                     </div>
                 </div>
             </div>
+
+            <!-- ------------------------------------------------------------------------------------- Visualizar load-->
+            <div id="showLoad" class="w3-modal">
+                <div>
+                    <div class="w3-display-middle">
+                        <div class="loader">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+  <!-- ------------------------------------------------------------------------------------- Visualizar alertas-->
+    <div class="w3-row-padding">
+        <div id="alertModal" class="w3-modal">
+            <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+                <div class="w3-center w3-padding-8"><br>
+                    <span onclick="document.getElementById('alertModal').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                        title="Fechar">×</span>
+
+                </div>
+
+
+                <div class="w3-container w3-center w3-border-top w3-padding-32 w3-light-grey">
+
+
+                    <label class="w3-label w3-text-blue">{{Alertdescription}}</label>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
 
             <script type="text/javascript" src="js/slideShow.js"></script>
