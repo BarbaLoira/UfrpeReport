@@ -39,18 +39,14 @@ public class AdmController {
 		return reportsAll;
 	}
 
-	
-	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/updateReport")
 	public void setSituacao(@RequestBody Report report) {
-		Report reportFind = this.reportRepository.findCpfAndId(report.getDescription(), report.getCpf());
+		
+		Report reportFind = this.reportRepository.findEmailAndId(report.getDescription(), report.getEmail());
 
-		System.out.println(report.getCpf() + "   " + reportFind.getCpf());
 		reportFind.setSituacao(report.getSituacao());
 		this.reportRepository.save(reportFind);
-
-		System.out.println(report.getSituacao() + "   " + reportFind.getSituacao());
 
 	}
 

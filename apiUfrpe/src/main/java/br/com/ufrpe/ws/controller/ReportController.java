@@ -31,14 +31,14 @@ public class ReportController {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/insertReport")
 	public void insert(@RequestBody Report report) {
-
+		report.setSituacao("não resolvido");
 		this.reportRepository.save(report);
 
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/verificarUser")
-	public LoginResponse verificarUser(@RequestBody String ptoken) throws ServletException {
+	public Login verificarUser(@RequestBody String ptoken) throws ServletException {
 
 		String token = "";
 		String email = "";
@@ -46,10 +46,10 @@ public class ReportController {
 			if (t != ' ') {
 				email += t;
 			} else {
-				
+
 				for (int i = email.length() + 1; i < ptoken.length(); i++) {
 					token += ptoken.charAt(i);
-					
+
 				}
 				break;
 			}
@@ -58,18 +58,19 @@ public class ReportController {
 		Login lgn = this.loginRepository.buscarPorEmail(email);
 		if (lgn != null) {
 			try {
-				System.out.println(lgn.getPassword() +"                " +token);
+				System.out.println(lgn.getPassword() + "                " + token);
 				Jwts.parser().setSigningKey(lgn.getPassword()).parseClaimsJws(token).getBody();
 
 			} catch (Exception e) {
-				
+
 				throw new ServletException("Usuário não autenticado");
 			}
 		} else {
 			System.out.println("lgn null");
 			throw new ServletException("Usuário não autenticado");
 		}
-		return new LoginResponse("Usuário autenticado");
+
+		return lgn;
 	}
 
 	private class LoginResponse {

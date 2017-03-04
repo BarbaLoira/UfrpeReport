@@ -42,7 +42,7 @@
         <div class="w3-row-padding w3-container" id="newReport">
 
             <div class="w3-container">
-                <form ng-submit="reportar()" class="w3-container w3-card-4 w3-light-grey w3-text-blue">
+                <form ng-submit="save()" class="w3-container w3-card-4 w3-light-grey w3-text-blue">
 
                     <!-- ----------------------------------------------------------------- INformando -- IMAGEM DE SELECAO -->
                     <div>
@@ -106,7 +106,7 @@
                         <div class="w3-col" style="width:50px"><i class="w3-xxlarge material-icons">photo_camera</i></div>
                         <div class="w3-rest">
 
-                            <input class="w3-button w3-light-blue" type="file" ng-model="file" name="inputFile" base-sixty-four-input required maxsize="500"
+                            <input id="iptImg" class="w3-button w3-light-blue" type="file" ng-model="file" name="inputFile" base-sixty-four-input maxsize="500"
                                 accept="image/*">
                             <br>
                             <label class="w3-label w3-center w3-validate w3-text-blue" style="font-size: small">Insira a foto do local (seria ótimo para averiguar a vericidade do caso)</label>
@@ -140,8 +140,8 @@
                 <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
                     <div class="w3-center w3-padding-8"><br>
-                        <!-- "document.getElementById('alertModal').style.display='none'" -->
-                        <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Fechar">×</span>
+                        <!--  -->
+                        <span onclick="document.getElementById('alertModal').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Fechar">×</span>
 
                     </div>
 

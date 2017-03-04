@@ -1,36 +1,45 @@
 //criacao do modulo principal da aplicacao
-var app = angular.module('appReport', []);
+var app = angular.module('appReport', ['naif.base64']);
 
 //criacao de controlers
 
 app.controller("indexController", function ($scope, $http, $window, $rootScope) {
     $scope.report = {};
+    $scope.file = {};
     $scope.cpfInvalido = true;
     $scope.pswValidation = "";
 
 
 
 
-    $scope.placeShow = function (place) {
 
-        $scope.report.place;
-    };
+    $scope.placeShow = function (str) {
+        $scope.report.place = str;
 
-    $scope.reportar = function () {
+    }
+
+    $scope.save = function () {
+
 
         if (angular.isUndefinedOrNull(document.getElementById('description').value)) {
             document.getElementById('validacaoDescription').style.visibility = "visible";
 
         }
-
+        else if (angular.isUndefinedOrNull($scope.report.place)) {
+            $scope.alertModal("Selecione o local onde ocorreu o fato");
+        }
         else {
             document.getElementById('validacaoDescription').style.visibility = "hidden";
             var element = document.getElementById('showLoad');
             element.style.display = 'block';
-            $http({ method: 'POST', url: 'http://localhost:8080/report/insertReport', data: $scope.report })
+            $scope.report.filename = $scope.file.filename;
+            $scope.report.base64 = $scope.file.base64;
+            $http({ method: 'POST', url: 'http://localhost:8080/reports/insertReport', data: $scope.report })
                 .then(function successCallback(response) {
-
-
+                    document.getElementById('description').value = null;
+                    $scope.report.place = "";
+                    document.getElementById('iptImg').value = null;
+                   $scope.file = {};
                     $scope.alertModal("Report salvo com sucesso.");
                     element.style.display = 'none';
 
@@ -122,8 +131,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
             $http({ method: 'POST', url: 'http://localhost:8080/reports/verificarUser', data: localStorage.getItem("token") })
                 .then(function successCallback(response) {
 
-                    //  $scope.alertModalLogin("Usuario autenticado");
-
+                    $scope.report.email = response.data.email;
                 }, function errorCallback(response) {
 
                     $scope.alertModalLogin("Usuario não autenticado, para entrar nessa pagina é necessario fazer o login.");

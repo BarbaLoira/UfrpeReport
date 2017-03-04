@@ -13,12 +13,13 @@ public class Report {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@Column(name = "cpf")
-	private String cpf;
+	
 	@Column(name = "email")
 	private String email;
 	@Column(name = "description")
 	private String description;
+	@Column(name = "resposta")
+	private String resposta;
 	@Column(name = "place")
 	private String place;
 	@Column(name = "filename")
@@ -63,12 +64,13 @@ public class Report {
 		this.base64 = base64;
 	}
 
-	public String getCpf() {
-		return cpf;
+
+	public String getResposta() {
+		return resposta;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
 	}
 
 	public String getEmail() {

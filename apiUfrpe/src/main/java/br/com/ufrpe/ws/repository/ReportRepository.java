@@ -14,8 +14,11 @@ import br.com.ufrpe.ws.model.Report;
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Integer> {
 
-	@Query(value="Select l from Report l where l.description=:pdescr and l.cpf=:pcpf")
-	Report findCpfAndId(@Param("pdescr")String descr,@Param("pcpf")String cpf);
+	//@Query(value="Select l from Report l where l.description=:pdescr and l.cpf=:pcpf")
+	//Report findCpfAndId(@Param("pdescr")String descr,@Param("pcpf")String cpf);
+
+	@Query(value="Select l from Report l where l.description=:pdescr and l.email=:pemail")
+	Report findEmailAndId(@Param("pdescr")String description,@Param("pemail") String email);
 	
 	
 	
