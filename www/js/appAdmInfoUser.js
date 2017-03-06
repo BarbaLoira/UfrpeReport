@@ -23,32 +23,34 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     $scope.auxImg;
     $scope.situacao = "";
     $scope.resposta = "";
-    $scope.filtro = {};
-    $scope.LugarFiltrado = "Selecione";
-    $scope.SituacaoFiltrado = "Selecione";
+    $scope.LugarFiltrado = "";
+    $scope.SituacaoFiltrado = "";
+    $scope.users = [];
 
-  $scope.changeFilter = function () {
+
+
+
+
+    $scope.getInfoUser = function () {
         var element = document.getElementById('showLoad');
         element.style.display = 'block';
-        $scope.filtro.LugarFiltrado = $scope.LugarFiltrado;
-        $scope.filtro.SituacaoFiltrado = $scope.SituacaoFiltrado;
-        console.log($scope.filtro);
-        $scope.str = $scope.LugarFiltrado + " " + $scope.SituacaoFiltrado;
-        $http({ method: 'POST', url: 'http://localhost:8080/personal/filtrar', data: $scope.str })
+        $http({ method: 'GET', url: 'http://localhost:8080/adm/users-total' })
             .then(function successCallback(response) {
+                $scope.users = response.data;
                 console.log(response.data);
-                $scope.reports = response.data;
-
                 element.style.display = 'none';
 
             }, function errorCallback(response) {
-                console.log(response.data);
-                $scope.alertModal("Não foi possivel carregar dados na tabela de reports");
+                $scope.alertModal("Não foi possivel carregar dados na tabela de usuários");
                 element.style.display = 'none';
             });
 
+    };
 
 
+
+    $scope.teste = function () {
+        alert('teste');
     };
 
     $scope.getReportsFiltrados = function () {
@@ -176,15 +178,15 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
         if (angular.isUndefinedOrNull(localStorage.getItem("token"))) {
-            $scope.alertModalLogin("Usuario não autenticado, para acessar essa pagina é necessario fazer o login.");
-            //   location.href = "index.html";
+            $scope.alertModalLogin("Usuario não autenticado, para acessar nessa pagina é necessario fazer o login.");
+            location.href = "index.html";
 
         }
         else {
             $http({ method: 'POST', url: 'http://localhost:8080/adm/verificarAdm', data: localStorage.getItem("token") })
                 .then(function successCallback(response) {
+                    // $scope.alertModal("Usuario autenticado");
 
-                    $scope.getReports();
                 }, function errorCallback(response) {
                     $scope.alertModalLogin("Usuario nao autenticado");
 
@@ -214,7 +216,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
     $scope.verificarUsuario();
-
+    $scope.getInfoUser();
 });
 
 

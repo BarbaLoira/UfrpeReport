@@ -13,7 +13,7 @@
 
 <head>
     <script src="js/angular.min.js"></script>
-    <script src="js/appAdm.js"></script>
+    <script src="js/appInfoPersonalReport.js"></script>
     <script type="text/javascript" src="js/angular-base64-upload.js"></script>
 
 </head>
@@ -28,7 +28,7 @@
                 <a href="index.html" ng-click="sair()" class="w3-btn-block w3-light-grey">Sair</a>
             </div>
             <div class="w3-col s3 w3-right">
-                <a href="infoUsers.html" class="w3-btn-block w3-light-grey">Verificar informações dos usuários</a>
+                <a href="Reports.html" class="w3-btn-block w3-light-grey">Reportar</a>
             </div>
         </div>
     </div>
@@ -76,7 +76,6 @@
   
 </select>
 
-
         <br>
         <br>
 
@@ -89,7 +88,7 @@
             <table class="w3-table-all w3-card-2 w3-hoverable w3-hover-border-blue">
                 <tr class="w3-blue">
 
-                    <th style="min-width:45px">Email</th>
+
                     <th style="min-width:30px">Lugar</th>
                     <th>Descricao</th>
                     <th style="width: 20%;">Imagem</th>
@@ -99,18 +98,18 @@
                 </tr>
                 <tr ng-repeat="r in reports">
 
-                    <th>{{r.email}}</th>
+
                     <th>{{r.place}}</th>
                     <th class="descrptAdm">{{r.description}}</th>
                     <th>
                         <img style="max-width:100%;" src="data:image/jpg;base64,{{r.base64}}"></th>
                     <th>{{r.situacao}}</th>
 
-                    <!--  <th> <input type="radio" ng-model="r.situacao" value="não resolvido">não resolvido <hr> <input type="radio" ng-model="r.situacao" value="resolvido">resolvido</th>-->
-                    <th>
-                        <a ng-click="showRow(r.email,r.description,r.resposta,r.place,r.situacao,r.filename,r.base64)" class="w3-btn-block w3-light-grey">Visualizar</a>
 
-                        <!--   <hr> <a ng-click="alterarSituacao(r)" class="w3-btn-block w3-light-grey">Atualizar Situação</a>-->
+                    <th>
+                        <a ng-click="showRow(r.place,r.description,r.base64,r.situacao,r.resposta)" class="w3-btn-block w3-light-grey ">Visualizar</a>
+
+
                     </th>
 
                 </tr>
@@ -163,26 +162,14 @@
                         <label style="max-width: 100%; word-wrap: break-word">{{description}}</label>
 
                     </div>
-                    <br>
+
                     <label style="max-width: 100%; word-wrap: break-word;margin-right: 10px;"><b>Situação:</b></label>
-
-                    <th>
-                        <tr>
-                            <input style="margin-right: 2px;" type="radio" ng-model="situacao" value="não resolvido">Não
-                            resolvido
-                            <input style="margin-left: 50px;margin-right: 2px;" type="radio" ng-model="situacao" value="resolvido">Resolvido
-                        </tr>
-                    </th>
+                    <label style="margin-right: 2px;">{{situacao}}</label>
                     <br>
-                    <br>
+                    <label style="max-width: 100%; word-wrap: break-word;margin-right: 10px;"><b>Resposta:</b></label>
+                    <label style="margin-right: 2px;">{{resposta}}</label>
 
-                    <label style="max-width: 100%; word-wrap: break-word"><b>Resposta administrativa:</b></label>
 
-                    <textarea style=" resize: none;" placeholder="É ideal manter o usuário atualizado, use esse campo para dar uma resposta ao usuário."
-                        class="w3-input w3-border " maxlength="600" rows="7" cols="50" ng-model="resposta"></textarea>
-                    <br>
-
-                    <button ng-click="alterarSituacao(email,description,resposta,place,situacao,filename,auxImg)" class="w3-btn-block w3-blue">Atualizar Situação</button>
 
                 </div>
             </div>

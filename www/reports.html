@@ -3,11 +3,13 @@
 <title>Reporte agora! UFRPE - Reports</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="lib/w3.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="css/index.css">
+
 
 <head>
     <script src="js/angular.min.js"></script>
@@ -24,7 +26,10 @@
         <div class="w3-container w3-light-blue ">
 
             <div class="w3-col s3 w3-right">
-                <a href="index.html" class="w3-btn-block w3-light-grey">Sair</a>
+                <a href="index.html" ng-click="sair()" class="w3-btn-block w3-light-grey">Sair</a>
+            </div>
+            <div class="w3-col s3 w3-right">
+                <a href="infoPersonalReports.html" class="w3-btn-block w3-light-grey">Meus Reports</a>
             </div>
         </div>
     </div>
@@ -95,8 +100,8 @@
                     <div class="w3-row w3-section">
                         <div class="w3-col" style="width:50px"><i class="w3-xxlarge material-icons">description</i></div>
                         <div class="w3-rest">
-                            <textarea id="description" style=" resize: none;" placeholder="Descreva o problema ocorrido..." class="w3-input w3-border " maxlength="600"
-                                rows="7" cols="50" ng-model="report.description" ></textarea>
+                            <textarea id="description" style=" resize: none;" placeholder="Descreva o problema ocorrido..." class="w3-input w3-border "
+                                maxlength="600" rows="7" cols="50" ng-model="report.description"></textarea>
                             <labe id="validacaoDescription" class="validacao" style=" visibility: hidden;">Preencha o campo de descrição.</label>
                         </div>
                     </div>
@@ -134,14 +139,15 @@
 
 
 
-     <!-- ------------------------------------------------------------------------------------- Visualizar alertas reports-->
+        <!-- ------------------------------------------------------------------------------------- Visualizar alertas reports-->
         <div class="w3-row-padding">
             <div id="alertModal" class="w3-modal">
                 <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
                     <div class="w3-center w3-padding-8"><br>
                         <!--  -->
-                        <span onclick="document.getElementById('alertModal').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Fechar">×</span>
+                        <span onclick="document.getElementById('alertModal').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                            title="Fechar">×</span>
 
                     </div>
 

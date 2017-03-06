@@ -5,9 +5,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="css/cadastro.css">
+
 
 <head>
     <script src="js/angular.min.js"></script>
@@ -55,7 +57,7 @@
                 <div class="w3-rest">
                     <input id="name" class="w3-input w3-border w3-validate" autocomplete="off" name="name" type="text" ng-model="cadastro.name"
                         placeholder="Digite seu nome...">
-                        <labe id="validacaoName" class="validacao" style=" visibility: hidden;">Campo vazio, por favor digite seu nome.</label>
+                    <label id="validacaoName" class="validacao" style=" visibility: hidden;">Campo vazio, por favor digite seu nome.</label>
 
                 </div>
             </div>
@@ -67,7 +69,7 @@
                     <input class="w3-input w3-border w3-validate" autocomplete="off" maxlength="14" ng-blur="validaCPF()" onblur="javascript: FG_FormatarCPF('txtCPF');"
                         id="txtCPF" onkeypress="javascript: return EntradaNumerico(event);" onfocus="javascript: RemoveMask('txtCPF');"
                         type="text" ng-model="cadastro.cpf" placeholder="Digite seu cpf...">
-                        <labe id="validacaoCpf" class="validacao" style=" visibility: hidden;">Cpf inválido ou vazio.</label>
+                    <label id="validacaoCpf" class="validacao" style=" visibility: hidden;">Cpf inválido ou vazio.</label>
                 </div>
 
             </div>
@@ -77,7 +79,7 @@
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
                 <div class="w3-rest">
                     <input id="email" class="w3-input w3-border w3-validate" autocomplete="off" type="email" ng-model="cadastro.email" placeholder="Digite seu email...">
-                    <labe id="validacaoEmail" class="validacao" style=" visibility: hidden;">Campo vazio, por favor digite seu email.</label>
+                    <label id="validacaoEmail" class="validacao" style=" visibility: hidden;">Campo vazio, por favor digite seu email.</label>
                 </div>
             </div>
 
@@ -85,7 +87,8 @@
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-lock"></i></div>
                 <div class="w3-rest">
-                    <input class="w3-input w3-border w3-validate" autocomplete="off" type="password" ng-model="cadastro.password" placeholder="Digite sua senha...">
+                      <label>Tamanho minimo 6 caracteres</label>
+                    <input pattern=".{6,}" id="senha" class="w3-input w3-border w3-validate" autocomplete="off" type="password" ng-model="cadastro.password" placeholder="Digite sua senha...">
                     <br>
                 </div>
             </div>
@@ -93,9 +96,9 @@
             <div class="w3-row w3-section">
                 <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-lock"></i></div>
                 <div class="w3-rest">
-                    <input id="id_submit" class="w3-input w3-border w3-validate" autocomplete="off" type="password" ng-model="pswValidation"
+                    <input pattern=".{6,}" id="id_submit" class="w3-input w3-border w3-validate" autocomplete="off" type="password" ng-model="pswValidation"
                         placeholder="Digite sua senha novamente...">
-                        <labe id="validacaoPsw" class="validacao" style=" visibility: hidden;">Por favor digite sua senha novamente, caso você tenha digitado então o valor digitado está diferente
+                    <label id="validacaoPsw" class="validacao" style=" visibility: hidden;">Por favor digite sua senha novamente, caso você tenha digitado então o valor digitado está diferente
                             que está no campo senha, por favor corrija, repita o mesmo valor que está no campo senha.</label>
                 </div>
             </div>
@@ -116,6 +119,29 @@
 
     </div>
     <button ng-click="alertModal('Não foi possivel fazer o cadastro, por favor tente mais tarde.')">alertModal</button>
+       <!-- ------------------------------------------------------------------------------------- Visualizar alertas login-->
+    <div class="w3-row-padding">
+        <div id="alertModalLogin" class="w3-modal">
+            <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+                <div class="w3-center w3-padding-8"><br>
+                    <!-- "document.getElementById('alertModal').style.display='none'" -->
+                    <span ng-click="goLeave()" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Fechar">×</span>
+
+                </div>
+
+
+                <div class="w3-container w3-center w3-border-top w3-padding-32 w3-light-grey">
+
+
+                    <label class="w3-label w3-text-blue">{{Alertdescription}}</label>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- ------------------------------------------------------------------------------------- Visualizar alertas-->
     <div class="w3-row-padding">

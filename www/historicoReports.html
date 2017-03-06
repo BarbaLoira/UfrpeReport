@@ -3,9 +3,11 @@
 <title>UFRPE - Reports</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="lib/w3.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="css/index.css">
 
 <head>
@@ -36,6 +38,42 @@
             <p>Ajude a sua Universidade saber dos problemas que a cercam</p>
         </div>
 
+ <br>
+        <br>
+   <!-- ---------------------------------------------------------------------------------------------------------- Filtro -->
+        <label style="margin-right: 20px;"><b>Filtrar por : </b></label>
+
+
+        <label style="margin-right: 1px;"><b>Situação</b></label>
+        <select id="filtroTableSituacao" ng-change="changeFilter()" ng-model="SituacaoFiltrado">
+   <option   value="Selecione">Visualizar tudo</option>
+   <option   value="resolvido">Resolvido</option>
+   <option   value="não resolvido" >Não resolvido</option>
+   </select>
+
+        <label style="margin-left: 20px;margin-right: 1px;"><b>Lugar </b></label>
+
+        <select id="filtroTableLugar" ng-change="changeFilter()" ng-model="LugarFiltrado">
+   <option   value="Selecione" >Visualizar tudo</option>
+   <option    value="sede">sede</option>
+    <option    value="Biblioteca">Biblioteca</option>
+   <option    value="Extensao" >Extensao</option>
+     <option    value="zootecnia">zootecnia</option>
+      <option    value="transrural">transrural</option>
+       <option    value="veterinaria">veterinaria</option>
+        <option    value="cegoe">cegoe</option>
+         <option    value="cenapesq">cenapesq</option>
+          <option    value="prefeitura">prefeitura</option>
+            <option    value="edFisica" >edFisica</option>
+              <option    value="ceagri2">ceagri2</option>
+                <option    value="ceagri1">ceagri1</option>
+                   <option    value="florestal">florestal</option>
+                     <option    value="pesca">pesca</option>
+  
+</select>
+
+        <br>
+        <br>
 
 
 
@@ -60,7 +98,7 @@
                     <th>{{r.situacao}}</th>
 
                     <th>
-                        <a ng-click="showRow(r.description,r.base64)" class="w3-btn-block w3-light-grey">Visualizar</a>
+                        <a ng-click="showRow(r.place,r.description,r.base64,r.situacao,r.resposta)" class="w3-btn-block w3-light-grey ">Visualizar</a>
                     </th>
 
                 </tr>
@@ -73,8 +111,8 @@
 
 
         <!-- ---------------------------------------------------------------------------------------------------------- Contact -->
-        <div class="w3-center w3-padding-64" id="contact">
-            <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Aconteceu algum problema no site?!</span>
+        <div class="w3-center w3-padding-64 " id="contact ">
+            <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16 ">Aconteceu algum problema no site?!</span>
             <br><br>
             <br>
             <label>Envie um email para: marcoseduflautista1@gmail.com</label>
@@ -84,25 +122,89 @@
 
         <!-- ------------------------------------------------------------------------------------- Visualizar info table-->
         <div class="w3-row-padding">
-            <div id="id02" class="w3-modal">
+            <div id="infoTable" class="w3-modal">
                 <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
 
                     <div class="w3-center w3-padding-8"><br>
-                        <span onclick="document.getElementById('id02').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                        <label class="w3-center w3-text-blue" style="font-size: medium;"><b>Visualização do Report</b></label>
+                        <span onclick="document.getElementById('infoTable').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
                             title="Close Modal">×</span>
 
                     </div>
 
-
                     <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
 
-                        <img style="max-width:100%;" style="max-height:100%" src="data:image/jpg;base64,{{auxImg}}" />
+                        <img id="imgInfoTable" style="max-width:100%;" style="background-color: darkgray;" style="max-height:100%" src="data:image/jpg;base64,{{auxImg}}"
+                        />
+                        <label id="validacaoImg" class="validacao w3-text-blue" style="visibility: hidden;">Esse report não contém imagem.</label>
+                        <br>
+
+                        <label style="max-width: 100%; word-wrap: break-word"><b>Localidade:</b></label>
+
+                        <label style="max-width: 100%; word-wrap: break-word">{{place}}</label>
+
                         <br>
                         <br>
-                        <div class="w3-panel w3-border w3-hover-border-blue w3-border-grey">
-                            <label>{{description}}</label>
+                        <label style="max-width: 100%; word-wrap: break-word"><b>Descrição:</b></label>
+                        <div class="w3-panel  w3-leftbar  w3-border-blue">
+                            <label style="max-width: 100%; word-wrap: break-word">{{description}}</label>
+
                         </div>
 
+                        <label style="max-width: 100%; word-wrap: break-word;margin-right: 10px;"><b>Situação:</b></label>
+                        <label style="margin-right: 2px;">{{situacao}}</label>
+                        <br>
+                        <label style="max-width: 100%; word-wrap: break-word;margin-right: 10px;"><b>Resposta:</b></label>
+                        <label style="margin-right: 2px;">{{resposta}}</label>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------------------------- Visualizar load-->
+        <div id="showLoad" class="w3-modal ">
+            <div>
+                <div class="w3-display-middle ">
+                    <div class="loader "></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------------------------- Visualizar alertas reports-->
+        <div class="w3-row-padding ">
+            <div id="alertModal " class="w3-modal ">
+                <div class="w3-modal-content w3-card-8 w3-animate-zoom " style="max-width:600px ">
+                    <div class="w3-center w3-padding-8 "><br>
+                        <label class="w3-center w3-text-blue " style="font-size: medium; "><b>Visualização do Report</b></label>
+                        <span onclick="document.getElementById( 'infoTable').style.display='none' " class="w3-closebtn
+                            w3-hover-red w3-container w3-padding-8 w3-display-topright " title="Close Modal ">×</span>
+
+                    </div>
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey ">
+
+                        <img id="imgInfoTable " style="max-width:100%; " style="background-color: darkgray; " style="max-height:100%
+                            " src="data:image/jpg;base64,{{auxImg}} " />
+                        <label id="validacaoImg " class="validacao w3-text-blue " style="visibility: hidden; ">Esse report não contém imagem.</label>
+                        <br>
+
+                        <label style="max-width: 100%; word-wrap: break-word "><b>Localidade:</b></label>
+
+                        <label style="max-width: 100%; word-wrap: break-word ">{{place}}</label>
+
+                        <br>
+                        <br>
+                        <label style="max-width: 100%; word-wrap: break-word "><b>Descrição:</b></label>
+                        <div class="w3-panel w3-leftbar w3-border-blue ">
+                            <label style="max-width: 100%; word-wrap: break-word ">{{description}}</label>
+
+                        </div>
+                        <br>
+                        <label style="max-width: 100%; word-wrap: break-word;margin-right: 10px; "><b>Situação:</b></label>
 
 
                     </div>
@@ -110,8 +212,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
 

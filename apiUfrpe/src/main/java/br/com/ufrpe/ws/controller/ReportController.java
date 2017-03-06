@@ -27,6 +27,13 @@ public class ReportController {
 	ReportRepository reportRepository;
 	@Autowired
 	LoginRepository loginRepository;
+	@ResponseBody
+	@RequestMapping(value = "/reports-total")
+	public List<Report> getViolations() {
+		List<Report> reportsAll = reportRepository.findAll();
+
+		return reportsAll;
+	}
 
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/insertReport")

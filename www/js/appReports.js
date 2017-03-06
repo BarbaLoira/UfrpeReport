@@ -63,7 +63,9 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
     };
-
+ $scope.sair = function () {
+        localStorage.setItem("token", "");
+    }
 
     angular.isUndefinedOrNull = function (val) {
         return angular.isUndefined(val) || val === null || val === ""
@@ -123,7 +125,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
         if (localStorage.getItem("token") == "") {
 
-            $scope.alertModalLogin("Usuario não autenticado, para entrar nessa pagina é necessario fazer o login.");
+            $scope.alertModalLogin("Usuario não autenticado, para acessar nessa pagina é necessario fazer o login.");
 
 
         }

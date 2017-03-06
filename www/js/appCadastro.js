@@ -27,6 +27,14 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
             document.getElementById('validacaoEmail').style.visibility = "visible";
 
         }
+        else if (angular.isUndefinedOrNull(document.getElementById('senha').value)) {
+            document.getElementById('validacaoPsw').style.visibility = "visible";
+
+        }
+        else if (angular.isUndefinedOrNull(document.getElementById('id_submit').value)) {
+            document.getElementById('validacaoPsw').style.visibility = "visible";
+
+        }
         else if ($scope.cadastro.password == $scope.pswValidation) {
             var element = document.getElementById('showLoad');
             element.style.display = 'block';
@@ -35,9 +43,9 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
 
-                    $scope.alertModal("Cadastrado com sucesso.");
+                    $scope.alertModalLogin("Cadastrado com sucesso.");
                     element.style.display = 'none';
-                    location.href = "reports.html";
+                   
 
 
 
@@ -64,7 +72,10 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
     };
+ $scope.goLeave = function () {
 
+        location.href = "index.html";
+    }
 
     angular.isUndefinedOrNull = function (val) {
         return angular.isUndefined(val) || val === null || val === ""
@@ -116,6 +127,11 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
             $scope.cpfInvalido = false;
         }
 
+    } 
+    $scope.alertModalLogin = function (description) {
+        $scope.Alertdescription = description;
+        var element = document.getElementById('alertModalLogin');
+        element.style.display = 'block';
     }
 
 

@@ -13,7 +13,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
         var: filename = "",
         var: auxImg = ""
     };
-
+    $scope.searchparam = {};
     $scope.file = {};
     $scope.reports = [];
     $scope.report = {};
@@ -27,7 +27,8 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     $scope.LugarFiltrado = "Selecione";
     $scope.SituacaoFiltrado = "Selecione";
 
-  $scope.changeFilter = function () {
+
+    $scope.changeFilter = function () {
         var element = document.getElementById('showLoad');
         element.style.display = 'block';
         $scope.filtro.LugarFiltrado = $scope.LugarFiltrado;
@@ -50,6 +51,8 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
     };
+
+
 
     $scope.getReportsFiltrados = function () {
         var element = document.getElementById('showLoad');
@@ -106,18 +109,18 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
             });
     }
     //(r.email,r.description,r.resposta,r.place,r.situacao,r.filename,r.base64)
-    $scope.showRow = function (email, description, resposta, place, situacao, filename, base64) {
-        $scope.email = email;
+    $scope.showRow = function (place, description, base64, situacao, resposta) {
+
         $scope.description = description;
         $scope.resposta = resposta;
         $scope.place = place;
         $scope.situacao = situacao;
-
-        $scope.filename = filename;
         $scope.auxImg = base64;
 
-        //  alert($scope.situacao);
         var element = document.getElementById('infoTable');
+        if (angular.isUndefinedOrNull(resposta)) {
+            $scope.resposta = "Administrador ainda não respondeu sobre o ocorrido.";
+        }
         if (angular.isUndefinedOrNull(base64)) {
             //  document.getElementById('imgInfoTable').style.visibility = "hidden";
             document.getElementById('validacaoImg').style.visibility = "visible";
@@ -131,6 +134,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
         element.style.display = 'block';
     }
 
+
     $scope.placeShow = function (str) {
         $scope.report.place = str;
 
@@ -138,7 +142,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     $scope.getReports = function () {
         var element = document.getElementById('showLoad');
         element.style.display = 'block';
-        $http({ method: 'GET', url: 'http://localhost:8080/adm/reports-total' })
+        $http({ method: 'POST', url: 'http://localhost:8080/personal/infoPersonal', data: localStorage.getItem("token") })
             .then(function successCallback(response) {
                 $scope.reports = response.data;
                 console.log(response.data);
@@ -176,15 +180,15 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
         if (angular.isUndefinedOrNull(localStorage.getItem("token"))) {
-            $scope.alertModalLogin("Usuario não autenticado, para acessar essa pagina é necessario fazer o login.");
-            //   location.href = "index.html";
+            $scope.alertModalLogin("Usuario não autenticado, para acessar nessa pagina é necessario fazer o login.");
+            location.href = "index.html";
 
         }
         else {
-            $http({ method: 'POST', url: 'http://localhost:8080/adm/verificarAdm', data: localStorage.getItem("token") })
+            $http({ method: 'POST', url: 'http://localhost:8080/reports/verificarUser', data: localStorage.getItem("token") })
                 .then(function successCallback(response) {
+                    // $scope.alertModal("Usuario autenticado");
 
-                    $scope.getReports();
                 }, function errorCallback(response) {
                     $scope.alertModalLogin("Usuario nao autenticado");
 
@@ -214,7 +218,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
 
     $scope.verificarUsuario();
-
+    $scope.getReports();
 });
 
 

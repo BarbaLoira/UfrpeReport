@@ -65,3 +65,7 @@ html,body,h1,h2,h3,h4 {
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
+
+.validacao{
+    font-size: small;
+}

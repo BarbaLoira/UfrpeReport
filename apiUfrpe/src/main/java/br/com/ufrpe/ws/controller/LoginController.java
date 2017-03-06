@@ -32,15 +32,13 @@ public class LoginController {
 		Login lgn = this.loginRepository.userValidation(login.getEmail(), login.getPassword());
 
 		if (lgn != null) {
-			
 
-				token = Jwts.builder().setSubject(lgn.getEmail()).signWith(SignatureAlgorithm.HS512, lgn.getPassword())
-						.compact();
-				
-				token = login.getEmail() + " " + token;
-				return new LoginResponse(token);
+			token = Jwts.builder().setSubject(lgn.getEmail()).signWith(SignatureAlgorithm.HS512, lgn.getPassword())
+					.compact();
 
-			
+			token = login.getEmail() + " " + token;
+			return new LoginResponse(token);
+
 		}
 
 		else {
@@ -58,19 +56,19 @@ public class LoginController {
 		Login lgn = this.loginRepository.userValidation(login.getEmail(), login.getPassword());
 
 		if (lgn != null) {
-			if (lgn.getTypeUser().equals("adm")) {
 
+			if (lgn.getTypeUser().equals("adm")) {
 				token = Jwts.builder().setSubject(lgn.getEmail()).signWith(SignatureAlgorithm.HS512, lgn.getPassword())
 						.compact();
-				// System.out.print(token);
+
 				token = login.getEmail() + " " + token;
 				return new LoginResponse(token);
-
 			} else {
+
 				throw new ServletException("Usuário não é adm");
 			}
-		}
 
+		}
 		else {
 
 			throw new ServletException("Usuário não encontrado");

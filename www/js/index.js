@@ -13,11 +13,25 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
     $scope.auxImg;
     $scope.cpf;
 
-    $scope.showRow = function (description, auxImg) {
+  //showRow(r.place,r.description,r.base64,r.situacao,r.resposta) 
+    $scope.showRow = function (description, base64) {
+
         $scope.description = description;
-        $scope.auxImg = auxImg;
-        var element = document.getElementById('infoTable');
-        element.style.display = 'block';
+       
+        $scope.auxImg = base64;
+       var element = document.getElementById('infoTable');
+     
+        if (angular.isUndefinedOrNull(base64)) {
+            //  document.getElementById('imgInfoTable').style.visibility = "hidden";
+            document.getElementById('validacaoImg').style.visibility = "visible";
+
+        }
+        else {
+
+            //   document.getElementById('imgInfoTable').style.visibility = "visible";
+            document.getElementById('validacaoImg').style.visibility = "hidden";
+        }
+       element.style.display = 'block';
     }
 
     $scope.alertModal = function (description) {
@@ -44,7 +58,7 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
 
                 }
                 else {
-                    alert(response.data.message);
+                    $scope.alertModal(response.data.message);
                 }
                 element.style.display = 'none';
 
@@ -62,15 +76,14 @@ app.controller("indexController", function ($scope, $http, $window, $rootScope) 
             .then(function successCallback(response) {
 
                 localStorage.setItem("token", response.data.token);
-
                 element.style.display = 'none';
                 location.href = "adm.html";
 
 
             }, function errorCallback(response) {
                 if (angular.isUndefinedOrNull(response.data) || angular.isUndefinedOrNull(response.data.message)) {
-
                     $scope.alertModal("Não foi possivel logar, por favor tente mais tarde.");
+
                 }
                 else {
                     $scope.alertModal(response.data.message);

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html ng-app="appReport">
+<title>UFRPE - Reports</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/index.css">
+
+<head>
+    <script src="js/angular.min.js"></script>
+    <script src="js/appAdmInfoUser.js"></script>
+    <script type="text/javascript" src="js/angular-base64-upload.js"></script>
+
+</head>
+
+<body ng-controller="indexController">
+
+    <!------------------------------------------------------------------------------- Links (sit on top) -->
+    <div class="w3-top ">
+        <div class="w3-container w3-light-blue ">
+
+            <div class="w3-col s3 w3-right">
+                <a href="index.html" ng-click="sair()" class="w3-btn-block w3-light-grey">Sair</a>
+            </div>
+            <div class="w3-col s3 w3-right">
+                <a href="adm.html" class="w3-btn-block w3-light-grey">Controle de Reports</a>
+            </div>
+        </div>
+    </div>
+
+    <!------------------------------------------------------------------------------- Apresentation -->
+    <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+        <div class="w3-panel">
+
+            <h1><b>UFRPE - Reports</b></h1>
+
+            <p>Bem vindo a aréa administrativa !</p>
+            <p>Aqui você tem o poder de ajudar, deixando os pupilos da Universidade bem mais seguros</p>
+        </div>
+        <br>
+        <br>
+
+        
+
+        <div class="w3-center w3-responsive">
+
+
+
+
+            <!-- ---------------------------------------------------------------------------------------------------------- Table Infomation -->
+            <table class="w3-table-all w3-card-2 w3-hoverable w3-hover-border-blue">
+                <tr class="w3-blue">
+
+                    <th>Cpf</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Tipo de Usuário</th>
+                </tr>
+                <tr ng-repeat="r in users">
+                    <th>{{r.cpf}}</th>
+                    <th>{{r.name}}</th>
+                    <th>{{r.email}}</th>
+                    <th>{{r.typeUser}}</th>
+                </tr>
+            </table>
+            <br>
+
+            <hr>
+
+
+
+            <!-- ---------------------------------------------------------------------------------------------------------- Contact -->
+            <div class="w3-center w3-padding-64" id="contact">
+                <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Aconteceu algum problema no site?!</span>
+                <br><br>
+                <br>
+                <label>Envie um email para: marcoseduflautista1@gmail.com</label>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- ------------------------------------------------------------------------------------- Visualizar alertas reports-->
+    <div class="w3-row-padding">
+        <div id="alertModal" class="w3-modal">
+            <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+                <div class="w3-center w3-padding-8"><br>
+                    <!--  -->
+                    <span onclick="document.getElementById('alertModal').style.display='none'" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                        title="Fechar">×</span>
+
+                </div>
+
+
+                <div class="w3-container w3-center w3-border-top w3-padding-32 w3-light-grey">
+
+
+                    <label class="w3-label w3-text-blue">{{Alertdescription}}</label>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ------------------------------------------------------------------------------------- Visualizar alertas login-->
+    <div class="w3-row-padding">
+        <div id="alertModalLogin" class="w3-modal">
+            <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:600px">
+
+                <div class="w3-center w3-padding-8"><br>
+                    <!-- "document.getElementById('alertModal').style.display='none'" -->
+                    <span ng-click="goLeave()" class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright" title="Fechar">×</span>
+
+                </div>
+
+
+                <div class="w3-container w3-center w3-border-top w3-padding-32 w3-light-grey">
+
+
+                    <label class="w3-label w3-text-blue">{{Alertdescription}}</label>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------- Visualizar load-->
+    <div id="showLoad" class="w3-modal">
+        <div>
+            <div class="w3-display-middle">
+                <div class="loader"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
